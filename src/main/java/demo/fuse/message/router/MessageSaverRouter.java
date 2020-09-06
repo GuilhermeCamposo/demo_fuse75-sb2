@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * A simple Camel REST DSL route that implements the greetings service.
- * 
+ *
  */
 @Component
 public class MessageSaverRouter extends RouteBuilder {
@@ -45,7 +45,7 @@ public class MessageSaverRouter extends RouteBuilder {
             .convertBodyTo(Message.class)
             .marshal().json(JsonLibrary.Gson)
             .to("{{to.rest.endpoint}}")
-            .inOnly("{{queue.save.message}}")
+            .inOnly("{{queue.save.msg}}")
             .setBody(simple("message was: ${body}"));
 
         // @formatter:on

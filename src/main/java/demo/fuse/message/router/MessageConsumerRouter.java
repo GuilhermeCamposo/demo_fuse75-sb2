@@ -14,12 +14,12 @@ public class MessageConsumerRouter extends RouteBuilder
     @Override
     public void configure() throws Exception {
 
-        from("{{queue.save.message}}")
+        from("{{queue.save.msg}}")
             .routeId("jms-route")
         .transacted()
         .log("Got Message: ${body}")
         .process(exchange -> Thread.sleep(sleepTime))
-        .to("amqp:demo.finalQueue")
+        .to("{{queue.move.msg}}")
         .log("message moved");
 
     }
